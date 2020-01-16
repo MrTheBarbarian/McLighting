@@ -733,10 +733,8 @@ WiFi.hostname(const_cast<char*>(HOSTNAME));
     DBG_OUTPUT_PORT.printf("/reset_wlan\n");
     server.sendHeader("Access-Control-Allow-Origin", "*");
     server.send(200, "text/plain", "Resetting WLAN and restarting..." );
-	#ifdef ENABLE_WIFIMANAGER
     WiFiManager wifiManager;
     wifiManager.resetSettings();
-	#endif
     ESP.restart();
   });
 
@@ -744,11 +742,8 @@ WiFi.hostname(const_cast<char*>(HOSTNAME));
     DBG_OUTPUT_PORT.printf("/start_config_ap\n");
     server.sendHeader("Access-Control-Allow-Origin", "*");
     server.send(200, "text/plain", "Starting config AP ..." );
-	
-	#ifdef ENABLE_WIFIMANAGER
     WiFiManager wifiManager;
     wifiManager.startConfigPortal(HOSTNAME);
-	#endif
   });
 
 
